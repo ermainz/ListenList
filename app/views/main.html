@@ -1,0 +1,42 @@
+<div class="container">
+
+
+  <div class="container-fluid new-item-form">
+    <!-- <form class="form-inline"> -->
+      <div class="row">
+        <div class="col-md-5">
+          <input class="form-control" ng-model="newItem.album" placeHolder="Album">
+        </div>
+        <div class="col-md-5">
+          <input class="form-control" ng-model="newItem.artist" placeHolder="Artist">
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary" ng-click="addNewItem()">Add</button>
+        </div>
+      </div>
+    <!-- </form> -->
+  </div>
+
+  <div class="panel">
+
+  <div class="panel-body">
+    <ul class="media-list">
+      <li class="media" ng-repeat="item in items">
+        <div class="media-left media-middle">
+          <img class="media-object" src="images/64x64.svg" alt="album cover">
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">{{item.album}}</h4>
+          <p class="list-text">{{item.artist}}</p>
+        </div>
+        <div class="media-right">
+          <button>
+            <span class="glyphicon glyphicon-ok"></span>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  </div>
+
+</div>

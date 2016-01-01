@@ -89,3 +89,8 @@ body {
 .list-text {
   margin: auto;
 }
+
+body .media-list {
+  width: 75%;
+  margin: auto;
+}

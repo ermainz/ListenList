@@ -82,6 +82,10 @@ body {
   }
 }
 
+.new-item-form {
+  margin: 0 0 16px 0;
+}
+
 .list-text {
   margin: auto;
 }

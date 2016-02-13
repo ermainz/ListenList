@@ -84,11 +84,20 @@ body {
 
 /* CUSTOM */
 
-.new-item-form {
-  margin: 0 0 16px 0;
+.new-item-form .form-group {
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-bottom: 0;
 }
 
-body .media-list {
-  width: 75%;
-  margin: auto;
+.new-item-form .form-group button {
+  width: 100%;
+}
+
+.media {
+  margin-top: 0;
+}
+
+.media-body p {
+  margin-bottom: 0;
 }

@@ -84,6 +84,10 @@ body {
 
 /* CUSTOM */
 
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
 .new-item-form .form-group {
   padding-left: 6px;
   padding-right: 6px;

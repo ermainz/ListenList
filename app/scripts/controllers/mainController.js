@@ -11,7 +11,7 @@ angular.module('listenListApp')
   .controller('MainCtrl', ['$scope', function ($scope) {
     $scope.newItem = {};
 
-    $scope.items = [
+    var items = [
       { artist: "Red Hot Chili Peppers", album: "I'm With You", listened: false },
       { artist: "Red Hot Chili Peppers", album: "Stadium Arcadium", listened: false },
       { artist: "Red Hot Chili Peppers", album: "By The Way", listened: false },
@@ -24,8 +24,24 @@ angular.module('listenListApp')
       { artist: "Red Hot Chili Peppers", album: "Red Hot Chili Peppers", listened: false }
     ];
 
+    $scope.listenedItems = function() {
+      return items.filter(function(item) {
+        return item.listened;
+      });
+    };
+
+    $scope.items = function() {
+      return items.filter(function(item) {
+        return !item.listened;
+      });
+    };
+
     $scope.addNewItem = function() {
-      $scope.items.unshift($scope.newItem);
+      items.unshift($scope.newItem);
       $scope.newItem = {};
+    };
+
+    $scope.markItemListened = function(item) {
+      item.listened = true;
     };
   }]);

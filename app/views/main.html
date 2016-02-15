@@ -25,22 +25,37 @@
     </div>
 
     <div class="panel-body">
+
       <div class="col-md-8 col-md-offset-2">
         <ul class="list-group">
-          <li class="media" ng-repeat="item in items">
+          <li class="media" ng-repeat="item in items()">
             <div class="media-body">
               <h4 class="media-heading">{{item.album}}</h4>
               <p>{{item.artist}}</p>
             </div>
             <div class="media-right">
-              <button class="btn btn-success btn-sm">
+              <button class="btn btn-success btn-sm" ng-click="markItemListened(item)">
                 <span class="glyphicon glyphicon-ok"></span>
               </button>
             </div>
           </li>
         </ul>
       </div>
+
+      <div class="col-md-8 col-md-offset-2">
+        <ul class="list-group">
+          <li class="media" ng-repeat="item in listenedItems()">
+            <div class="media-body">
+              <h4 class="media-heading text-muted">{{item.album}}</h4>
+              <p class="text-muted">{{item.artist}}</p>
+            </div>
+            <div class="media-right">
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
+
   </div>
 
 </div>

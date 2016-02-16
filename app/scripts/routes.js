@@ -5,6 +5,9 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
+        redirectTo: '/home'
+      })
+      .when('/home', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'MainCtrl'

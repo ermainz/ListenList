@@ -8,40 +8,46 @@
  * Controller of the listenListApp
  */
 angular.module('listenListApp')
-  .controller('MainCtrl', ['$scope', function ($scope) {
-    $scope.newItem = {};
+  .controller('MainCtrl', ['$scope', 'currentAuth', '$firebaseObject', '$firebaseArray', function ($scope, currentAuth, $firebaseObject, $firebaseArray) {
 
-    var items = [
-      { artist: "Red Hot Chili Peppers", album: "I'm With You", listened: false },
-      { artist: "Red Hot Chili Peppers", album: "Stadium Arcadium", listened: false },
-      { artist: "Red Hot Chili Peppers", album: "By The Way", listened: false },
-      { artist: "Red Hot Chili Peppers", album: "Californication", listened: false },
-      { artist: "Red Hot Chili Peppers", album: "One Hot Minute", listened: false },
-      { artist: "Red Hot Chili Peppers", album: "Blood Sugar Sex Magik", listened: false },
-      { artist: "Red Hot Chili Peppers", album: "Mother's Milk", listened: false },
-      { artist: "Red Hot Chili Peppers", album: "Uplift Mofo Party Plan", listened: false },
-      { artist: "Red Hot Chili Peppers", album: "Freaky Styley", listened: false },
-      { artist: "Red Hot Chili Peppers", album: "Red Hot Chili Peppers", listened: false }
-    ];
+    var resetNewItem = function() {
+      $scope.newItem = {user: currentAuth.uid, listened: false};
+    };
+
+    var ref = new Firebase("https://tunezlist.firebaseio.com");
+    var user = $firebaseObject(ref.child('users').child(currentAuth.uid));
+    user.$bindTo($scope, 'user').then(function() {
+      if (currentAuth.provider === 'facebook') {
+        $scope.user.displayName = currentAuth.facebook.displayName;
+      }
+    });
+
+    $scope.fireItems = $firebaseArray(user.$ref().child('items'));
+
+    resetNewItem();
 
     $scope.listenedItems = function() {
-      return items.filter(function(item) {
+      return $scope.fireItems.filter(function(item) {
         return item.listened;
       });
     };
 
     $scope.items = function() {
-      return items.filter(function(item) {
+      return $scope.fireItems.filter(function(item) {
         return !item.listened;
       });
     };
 
     $scope.addNewItem = function() {
-      items.unshift($scope.newItem);
-      $scope.newItem = {};
+      $scope.fireItems.$add($scope.newItem).then(function(ref) {
+        // nothing to do right now
+      });
+      resetNewItem();
     };
 
-    $scope.markItemListened = function(item) {
+    $scope.markItemListened = function(itemKey) {
+      var item = $scope.fireItems.$getRecord(itemKey);
       item.listened = true;
+      $scope.fireItems.$save(item);
     };
   }]);

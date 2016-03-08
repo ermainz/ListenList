@@ -22,14 +22,15 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-static-top" ng-controller="HeaderCtrl">
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="#/">ListenList</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#/signin">Sign In</a></li>
+            <button type="button" class="btn btn-default navbar-btn" ng-hide="authData" ng-click="signin()">Sign In</button>
+            <button type="button" class="btn btn-default navbar-btn" ng-show="authData" ng-click="signout()">Sign Out</button>
           </ul>
         </div>
       </div>
@@ -65,6 +66,7 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -72,6 +74,8 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/routes.js"></script>
         <script src="scripts/controllers/mainController.js"></script>
+        <script src="scripts/controllers/headerController.js"></script>
+        <script src="scripts/factories/auth.js"></script>
         <!-- endbuild -->
 </body>
 </html>

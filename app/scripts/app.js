@@ -10,5 +10,7 @@
  */
 angular
   .module('listenListApp', [
-    'ngRoute'
+    'ngRoute',
+    'firebase',
+    'ui.bootstrap'
   ]);

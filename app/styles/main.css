@@ -124,3 +124,11 @@ body {
 .media-body p {
   margin-bottom: 0;
 }
+
+body {
+  background: #FCFCFC;
+}
+
+.listen-icon {
+  font-size: 30px;
+}

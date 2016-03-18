@@ -129,6 +129,46 @@ body {
   background: #FCFCFC;
 }
 
-.listen-icon {
+.music-icon {
   font-size: 30px;
+}
+
+.listened-icon {
+  color: #69F0AE;
+}
+
+.listened-icon:hover {
+  color: #757575;
+}
+
+.unlistened-icon {
+  color: #BDBDBD;
+}
+
+.unlistened-icon:hover {
+  color: #00C853;
+}
+
+.listen-button {
+  outline: none;
+  border: 0;
+  background: transparent;
+}
+
+.listen-button:hover {
+  outline: none;
+  border: 0;
+  background: transparent;
+}
+
+.listen-button:focus {
+  outline: none;
+  border: 0;
+  background: transparent;
+}
+
+.listen-button:active {
+  outline: none;
+  border: 0;
+  background: transparent;
 }

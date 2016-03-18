@@ -9,8 +9,8 @@
               <p><span class="glyphicon glyphicon-user"></span> {{item.artist}}</p>
             </div>
             <div class="media-right">
-              <button class="btn btn-success btn-sm" ng-click="markItemListened(item.$id)">
-                <span class="glyphicon glyphicon-music listen-icon"></span>
+              <button class="btn btn-sm listen-button" ng-click="markItemListened(item.$id)">
+                <span class="glyphicon glyphicon-music music-icon unlistened-icon"></span>
               </button>
             </div>
           </li>
@@ -22,6 +22,9 @@
               <p class="text-muted"><span class="glyphicon glyphicon-user"></span> {{item.artist}}</p>
             </div>
             <div class="media-right">
+              <button class="btn btn-sm listen-button" ng-click="markItemUnListened(item.$id)">
+                <span class="glyphicon glyphicon-music music-icon listened-icon"></span>
+              </button>
             </div>
           </li>
 

@@ -39,4 +39,10 @@ angular.module('listenListApp')
       item.listened = true;
       $scope.allItems.$save(item);
     };
+
+    $scope.markItemUnListened = function(itemKey) {
+      var item = $scope.allItems.$getRecord(itemKey);
+      item.listened = false;
+      $scope.allItems.$save(item);
+    };
   }]);

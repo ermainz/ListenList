@@ -8,19 +8,10 @@
  * Controller of the listenListApp
  */
 angular.module('listenListApp')
-  .controller('MainCtrl', ['$scope', 'currentAuth', '$firebaseObject', '$firebaseArray', function ($scope, currentAuth, $firebaseObject, $firebaseArray) {
+  .controller('MainCtrl', ['$scope', 'currentAuth', 'ItemList', function ($scope, currentAuth, ItemList) {
 
     // TODO on auth change, clear the list
-
-    var ref = new Firebase("https://tunezlist.firebaseio.com");
-    var user = $firebaseObject(ref.child('users').child(currentAuth.uid));
-    user.$bindTo($scope, 'user').then(function() {
-      if (currentAuth.provider === 'facebook') {
-        $scope.user.displayName = currentAuth.facebook.displayName;
-      }
-    });
-
-    $scope.allItems = $firebaseArray(user.$ref().child('items'));
+    $scope.allItems = ItemList(currentAuth.uid);
 
     $scope.listenedItems = function() {
       return $scope.allItems.filter(function(item) {

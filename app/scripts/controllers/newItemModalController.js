@@ -1,16 +1,15 @@
 angular.module('listenListApp')
-.controller('NewItemModalCtrl', ['$scope', '$uibModalInstance', 'Auth', '$location', '$firebaseObject', '$firebaseArray', function($scope, $uibModalInstance, Auth, $location, $firebaseObject, $firebaseArray) {
+.controller('NewItemModalCtrl', ['$scope', '$uibModalInstance', 'Auth', '$location', 'ItemList', function($scope, $uibModalInstance, Auth, $location, ItemList) {
 
   console.log('New Item modal opened');
   var authData = Auth.$getAuth();
   if (!authData) {
     // TODO show message to log in
   }
+
   $scope.newItem = { listened: false };
 
-  var ref = new Firebase("https://tunezlist.firebaseio.com");
-  var user = $firebaseObject(ref.child('users').child(authData.uid));
-  var items = $firebaseArray(user.$ref().child('items'));
+  var items = ItemList(authData.uid);
 
   $scope.addNewItem = function() {
     // TODO show spinner or something?

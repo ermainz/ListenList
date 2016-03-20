@@ -1,5 +1,5 @@
 angular.module('listenListApp')
-.controller('NewItemModalCtrl', ['$scope', '$uibModalInstance', 'Auth', '$location', 'ItemList', function($scope, $uibModalInstance, Auth, $location, ItemList) {
+.controller('NewItemModalCtrl', ['$scope', '$uibModalInstance', 'Auth', '$location', 'ItemList', 'AlbumSearch', function($scope, $uibModalInstance, Auth, $location, ItemList, AlbumSearch) {
 
   console.log('New Item modal opened');
   var authData = Auth.$getAuth();
@@ -10,6 +10,10 @@ angular.module('listenListApp')
   $scope.newItem = { listened: false };
 
   var items = ItemList(authData.uid);
+
+  $scope.albumSearches = function() {
+    return AlbumSearch($scope.newItem.album, $scope.newItem.artist);
+  }
 
   $scope.addNewItem = function() {
     // TODO show spinner or something?

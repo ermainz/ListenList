@@ -1,5 +1,5 @@
 angular.module('listenListApp')
-.controller('NewItemModalCtrl', ['$scope', '$uibModalInstance', 'Auth', '$location', 'ItemList', 'AlbumSearch', function($scope, $uibModalInstance, Auth, $location, ItemList, AlbumSearch) {
+.controller('NewItemModalCtrl', ['$scope', '$uibModalInstance', 'Auth', '$location', 'ItemList', 'ArtistSearch', 'AlbumSearch', function($scope, $uibModalInstance, Auth, $location, ItemList, ArtistSearch, AlbumSearch) {
 
   console.log('New Item modal opened');
   var authData = Auth.$getAuth();
@@ -11,8 +11,12 @@ angular.module('listenListApp')
 
   var items = ItemList(authData.uid);
 
-  $scope.albumSearches = function() {
-    return AlbumSearch($scope.newItem.album, $scope.newItem.artist);
+  $scope.albumSearches = function(albumName) {
+    return AlbumSearch(albumName, $scope.newItem.artist);
+  }
+
+  $scope.artistSearches = function(artistName) {
+    return ArtistSearch(artistName);
   }
 
   $scope.addNewItem = function() {
